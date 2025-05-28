@@ -1,6 +1,6 @@
 # Projeto de Gerenciamento de Carros 🚗
 
-Este é um projeto Django para gerenciamento de carros, permitindo aos usuários registrados realizar operações CRUD (Criar, Ler, Atualizar, Deletar) nos registros de veículos. O projeto utiliza Docker para facilitar a configuração e execução do ambiente de desenvolvimento.
+Este é um projeto Django Full Stack (Server Side) para gerenciamento de carros, permitindo aos usuários registrados realizar operações CRUD (Criar, Ler, Atualizar, Deletar) nos registros de veículos. O projeto utiliza Docker para facilitar a configuração e execução do ambiente de desenvolvimento.
 
 ---
 
@@ -31,7 +31,8 @@ Este é um projeto Django para gerenciamento de carros, permitindo aos usuários
 
 ## 🛠️ Tecnologias Utilizadas
 
-* **Backend:** Django
+* **Frontend** HTML, Tailwind CSS
+* **Backend:** Django (Server Side)
 * **Containerização:** Docker
 
 ---
