@@ -64,6 +64,9 @@ Siga os passos abaixo para executar o projeto localmente:
 4.  **Crie um superusuário:**
     Abra outro terminal e execute:
     ```bash
+    cd <NOME_DO_SEU_PROJETO>
+    ```
+    ```bash
     docker-compose exec web python manage.py createsuperuser
     ```
     Siga as instruções para criar seu usuário administrador.
