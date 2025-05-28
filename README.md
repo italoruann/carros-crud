@@ -54,27 +54,17 @@ Siga os passos abaixo para executar o projeto localmente:
     ```
 
 2.  **Construa e execute os containers Docker:**
-    (Certifique-se de que você tem um arquivo `docker-compose.yml` configurado no seu projeto)
     ```bash
     docker-compose up --build
     ```
-    Se você não tiver um `docker-compose.yml` e estiver usando apenas um `Dockerfile`, você pode construir e rodar com comandos Docker:
-    ```bash
-    docker build -t nome-da-sua-imagem .
-    docker run -p 8000:8000 nome-da-sua-imagem
-    ```
-
+    
 3.  **Acesse a aplicação:**
-    Abra seu navegador e acesse `http://localhost:8000` (ou a porta que você configurou).
+    Abra seu navegador e acesse `http://localhost:8000`.
 
-4.  **Crie um superusuário (se ainda não o fez via Dockerfile ou script de inicialização):**
+4.  **Crie um superusuário:**
     Abra outro terminal e execute:
     ```bash
     docker-compose exec web python manage.py createsuperuser
-    ```
-    Ou, se não estiver usando compose:
-    ```bash
-    docker exec -it <ID_DO_SEU_CONTAINER_WEB> python manage.py createsuperuser
     ```
     Siga as instruções para criar seu usuário administrador.
 
