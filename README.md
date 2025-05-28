@@ -7,7 +7,8 @@ Este é um projeto Django para gerenciamento de carros, permitindo aos usuários
 ## 🌐 Acesso Online (Produção)
 
 **O sistema está ativo e pode ser acessado em:** 👉 **[https://ajucarros.duckdns.org/](https://ajucarros.duckdns.org/)** 👈
-
+* **Hospedagem:** O backend está hospedado em nuvem na **AWS (Amazon Web Services)**.
+* **Servidor Web:** Utiliza **Nginx**
 ---
 
 
