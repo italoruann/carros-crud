@@ -112,10 +112,7 @@ Abaixo estão as principais rotas da aplicação e suas funcionalidades:
     * **View:** `cars.views.CarDeleteView`
     * **Nome:** `car_delete`
     * **Descrição:** Confirma e realiza a exclusão de um carro específico. Requer login.
-
-**Observação sobre Arquivos de Mídia:**
-As URLs para arquivos de mídia (definidas por `settings.MEDIA_URL`) são servidas diretamente pelo Django em ambiente de desenvolvimento, conforme configurado em `urlpatterns`.
-
+      
 ---
 
 ## 🤝 Contribuindo (Opcional)
