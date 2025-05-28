@@ -1,0 +1,137 @@
+# Projeto de Gerenciamento de Carros 🚗
+
+Este é um projeto Django para gerenciamento de carros, permitindo aos usuários registrados realizar operações CRUD (Criar, Ler, Atualizar, Deletar) nos registros de veículos. O projeto utiliza Docker para facilitar a configuração e execução do ambiente de desenvolvimento.
+
+---
+
+## ✨ Funcionalidades
+
+* **Autenticação de Usuários:**
+    * Registro de novos usuários
+    * Login de usuários existentes
+    * Logout de usuários
+* **Gerenciamento de Carros (CRUD completo para usuários logados):**
+    * Visualização da página inicial com carros.
+    * Listagem de todos os carros cadastrados.
+    * Criação de novos registros de carros.
+    * Visualização dos detalhes de um carro específico.
+    * Atualização das informações de um carro existente.
+    * Exclusão de um carro.
+* **Interface Administrativa:** Acesso ao painel de administração do Django.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+* **Backend:** Django
+* **Containerização:** Docker
+
+---
+
+## 🚀 Pré-requisitos
+
+Antes de começar, certifique-se de ter o [Docker](https://www.docker.com/get-started) e o [Docker Compose](https://docs.docker.com/compose/install/) instalados em sua máquina.
+
+---
+
+## 🏁 Começando
+
+Siga os passos abaixo para executar o projeto localmente:
+
+1.  **Clone o repositório:**
+    ```bash
+    git clone <URL_DO_SEU_REPOSITORIO>
+    cd <NOME_DO_SEU_PROJETO>
+    ```
+
+2.  **Construa e execute os containers Docker:**
+    (Certifique-se de que você tem um arquivo `docker-compose.yml` configurado no seu projeto)
+    ```bash
+    docker-compose up --build
+    ```
+    Se você não tiver um `docker-compose.yml` e estiver usando apenas um `Dockerfile`, você pode construir e rodar com comandos Docker:
+    ```bash
+    docker build -t nome-da-sua-imagem .
+    docker run -p 8000:8000 nome-da-sua-imagem
+    ```
+
+3.  **Acesse a aplicação:**
+    Abra seu navegador e acesse `http://localhost:8000` (ou a porta que você configurou).
+
+4.  **Crie um superusuário (se ainda não o fez via Dockerfile ou script de inicialização):**
+    Abra outro terminal e execute:
+    ```bash
+    docker-compose exec web python manage.py createsuperuser
+    ```
+    Ou, se não estiver usando compose:
+    ```bash
+    docker exec -it <ID_DO_SEU_CONTAINER_WEB> python manage.py createsuperuser
+    ```
+    Siga as instruções para criar seu usuário administrador.
+
+---
+
+## 🗺️ Rotas da Aplicação (Endpoints)
+
+Abaixo estão as principais rotas da aplicação e suas funcionalidades:
+
+* **`admin/`**:
+    * **Descrição:** Acesso ao painel de administração do Django.
+* **`register/`**:
+    * **View:** `accounts.views.register_view`
+    * **Nome:** `register`
+    * **Descrição:** Página para registro de novos usuários.
+* **`login/`**:
+    * **View:** `accounts.views.login_view`
+    * **Nome:** `login`
+    * **Descrição:** Página para login de usuários existentes.
+* **`logout/`**:
+    * **View:** `accounts.views.logout_view`
+    * **Nome:** `logout`
+    * **Descrição:** Realiza o logout do usuário.
+* **`/` (raiz)**:
+    * **View:** `cars.views.CarsHomeView`
+    * **Nome:** `home`
+    * **Descrição:** Página inicial da aplicação, geralmente exibindo alguns carros.
+* **`cars/`**:
+    * **View:** `cars.views.CarsListView`
+    * **Nome:** `cars_list`
+    * **Descrição:** Lista todos os carros cadastrados. Requer login.
+* **`new_car/`**:
+    * **View:** `cars.views.NewCarCreateView`
+    * **Nome:** `new_car`
+    * **Descrição:** Formulário para adicionar um novo carro. Requer login.
+* **`car/<int:pk>/`**:
+    * **View:** `cars.views.CarDetailView`
+    * **Nome:** `car_detail`
+    * **Descrição:** Exibe os detalhes de um carro específico, identificado pelo seu `pk` (Primary Key). Requer login.
+* **`car/<int:pk>/update/`**:
+    * **View:** `cars.views.CarUpdateView`
+    * **Nome:** `car_update`
+    * **Descrição:** Formulário para atualizar as informações de um carro específico. Requer login.
+* **`car/<int:pk>/delete/`**:
+    * **View:** `cars.views.CarDeleteView`
+    * **Nome:** `car_delete`
+    * **Descrição:** Confirma e realiza a exclusão de um carro específico. Requer login.
+
+**Observação sobre Arquivos de Mídia:**
+As URLs para arquivos de mídia (definidas por `settings.MEDIA_URL`) são servidas diretamente pelo Django em ambiente de desenvolvimento, conforme configurado em `urlpatterns`.
+
+---
+
+## 🤝 Contribuindo (Opcional)
+
+Contribuições são bem-vindas! Se você deseja contribuir para este projeto, por favor:
+
+1.  Faça um fork do projeto.
+2.  Crie uma nova branch (`git checkout -b feature/nova-funcionalidade`).
+3.  Faça commit das suas alterações (`git commit -m 'Adiciona nova funcionalidade'`).
+4.  Faça push para a branch (`git push origin feature/nova-funcionalidade`).
+5.  Abra um Pull Request.
+
+---
+
+## 📄 Licença (Opcional)
+
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE.md](LICENSE.md) (se existir) para detalhes.
+Se não houver um arquivo de licença, você pode adicionar um, como o MIT, que é bastante permissivo.
