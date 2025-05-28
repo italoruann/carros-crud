@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+  <div class="w-full max-w-xl bg-white rounded-3xl shadow-2xl px-10 py-14 sm:py-20">
+    
+    <div class="text-center space-y-4">
+      <h2 class="text-4xl font-bold text-red-600">Excluir Carro</h2>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        Tem certeza que deseja excluir o carro <span class="font-semibold text-gray-900">"{{ object.brand }} {{ object.model }}"</span>?<br>
+        Esta ação não poderá ser desfeita.
+      </p>
+    </div>
+
+    <form method="POST" class="mt-12 space-y-6">
+      {% csrf_token %}
+
+      <div class="flex flex-col sm:flex-row justify-center sm:justify-end gap-4">
+        <button type="submit"
+                class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-200">
+          Sim, excluir
+        </button>
+        
+        <a href="{% url 'car_detail' pk=object.pk %}"
+           class="w-full sm:w-auto bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-lg shadow-md transition duration-200 text-center">
+          Cancelar
+        </a>
+      </div>
+    </form>
+  </div>
+
+{% endblock %}

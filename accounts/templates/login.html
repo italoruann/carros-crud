@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="w-full max-w-xl bg-white rounded-3xl shadow-2xl p-10">
+  
+  <h2 class="text-3xl font-extrabold text-center text-gray-800 mb-8">Fazer login</h2>
+
+  {% if messages %}
+    <div class="space-y-4 mb-4">
+      {% for message in messages %}
+        <div class="p-4 rounded-lg border text-sm
+                    {% if 'success' in message.tags %}
+                      bg-green-100 border-green-300 text-green-800
+                    {% elif 'error' in message.tags %}
+                      bg-red-100 border-red-300 text-red-800
+                    {% elif 'warning' in message.tags %}
+                      bg-yellow-100 border-yellow-300 text-yellow-800
+                    {% else %}
+                      bg-gray-100 border-gray-300 text-gray-800
+                    {% endif %}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <form method="post" class="space-y-6">
+    {% csrf_token %}
+
+    <div>
+      <label for="" class="block text-sm font-semibold text-gray-700">Email</label>
+      {% if login_form.username.errors %}
+        <p class="text-sm text-red-600 mt-1">{{ login_form.username.errors.0 }}</p>
+      {% endif %}
+      {{ login_form.username|add_class:"mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" }}
+    </div>
+
+    <div>
+      <label for="" class="block text-sm font-semibold text-gray-700">Senha</label>
+      {% if login_form.password.errors %}
+        <p class="text-sm text-red-600 mt-1">{{ login_form.password.errors.0 }}</p>
+      {% endif %}
+      {{ login_form.password|add_class:"mt-2 w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" }}
+    </div>
+
+    <div>
+      Usuário novo? <a href="{% url 'register' %}" class="text-sm text-blue-600 hover:text-blue-700">Criar uma conta</a>
+    </div>
+
+      <button type="submit"
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-md transition duration-200">
+        Entrar
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %}

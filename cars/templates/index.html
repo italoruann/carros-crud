@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% load static %}
+{% load currency_filters %}
+
+{% block content %}
+
+<div class="bg-white">
+
+  <section class="relative bg-blue-50 py-24 overflow-hidden">
+    <img src="{% static 'images/hero-car.jpg' %}" alt="Carro de destaque" class="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none">
+    <div class="relative container mx-auto px-6 text-center">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-blue-700 tracking-tight mb-6 animate-fade-in">
+        Bem-vindo ao <span class="text-blue-800">Aju Carros</span>
+      </h1>
+      <p class="text-lg sm:text-xl text-gray-800 mb-8 max-w-2xl mx-auto animate-fade-in delay-150">
+        Descubra os carros em alta no mercado de Aracaju e região. Tendências, preços atualizados e os modelos mais buscados em um só lugar.
+      </p>
+      <a href="{% url 'cars_list' %}"
+         class="inline-block bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 text-white px-8 py-4 text-lg font-medium rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-lg animate-fade-in delay-300">
+        Ver Catálogo de Carros
+      </a>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-16 tracking-tight animate-fade-in">
+        Por que escolher o Aju Carros?
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+
+        <div class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 ease-in-out overflow-hidden transform hover:-translate-y-1 animate-fade-up">
+          <img src="{% static 'images/carros-em-alta.jpg' %}" alt="Carros em Alta" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-blue-600 mb-2">Carros em Alta</h3>
+            <p class="text-gray-600">Acompanhamos o mercado em tempo real para mostrar os modelos mais procurados.</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 ease-in-out overflow-hidden transform hover:-translate-y-1 animate-fade-up delay-150">
+          <img src="{% static 'images/info-confiavel.jpg' %}" alt="Informações Confiáveis" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-blue-600 mb-2">Informações Confiáveis</h3>
+            <p class="text-gray-600">Dados atualizados, seguros e transparentes para decisões mais inteligentes.</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 ease-in-out overflow-hidden transform hover:-translate-y-1 animate-fade-up delay-300">
+          <img src="{% static 'images/busca-rapida.jpg' %}" alt="Busca Rápida" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-blue-600 mb-2">Busca Rápida</h3>
+            <p class="text-gray-600">Ferramenta intuitiva para encontrar rapidamente o carro ideal para você.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold text-gray-800 mb-12 animate-fade-in">O que nossos clientes dizem</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <div class="bg-white p-6 rounded-xl shadow-md animate-fade-up">
+          <div class="flex flex-col items-center">
+            <img src="{% static 'images/customers/italo.jpg' %}" alt="Italo Ruann" class="w-16 h-16 rounded-full mb-4 shadow-md object-cover">
+            <p class="text-gray-600 mb-4 text-sm">"Consegui vender meu carro em menos de uma semana. Site rápido e confiável!"</p>
+            <span class="font-semibold text-blue-600">Italo Ruann</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md animate-fade-up delay-150">
+          <div class="flex flex-col items-center">
+            <img src="{% static 'images/customers/vitoria.jpg' %}" alt="Vitoria Alves" class="w-16 h-16 rounded-full mb-4 shadow-md object-cover">
+            <p class="text-gray-600 mb-4 text-sm">"Excelente experiência. Os dados são precisos e as fotos ajudam muito."</p>
+            <span class="font-semibold text-blue-600">Vitoria Alves</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md animate-fade-up delay-300">
+          <div class="flex flex-col items-center">
+            <img src="{% static 'images/customers/marcos.jpg' %}" alt="Marcos Henrique" class="w-16 h-16 rounded-full mb-4 shadow-md object-cover">
+            <p class="text-gray-600 mb-4 text-sm">"Achei meu carro ideal em 3 dias. Simplesmente sensacional!"</p>
+            <span class="font-semibold text-blue-600">Marcos Henrique</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white text-center">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold text-gray-800 mb-12 animate-fade-in">Aju Carros em números</h2>
+      <div class="grid md:grid-cols-3 gap-8 text-blue-600"> <!-- Alterei de 4 para 3 colunas -->
+        <div class="animate-fade-up">
+          <p class="text-4xl font-bold">+{{ inventory.cars_count }}</p>
+          <p class="text-gray-600">Carros listados</p>
+        </div>
+        <div class="animate-fade-up delay-200">
+          <p class="text-4xl font-bold">+R${{ inventory.cars_value|currency_br }}</p>
+          <p class="text-gray-600">Valor total de carros cadastrados</p>
+        </div>
+        <div class="animate-fade-up delay-300">
+          <p class="text-4xl font-bold">5/5</p>
+          <p class="text-gray-600">Avaliação média</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-blue-600 py-20">
+    <div class="container mx-auto px-6 text-center text-white">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4 animate-fade-in">Pronto para encontrar seu próximo carro?</h2>
+      <p class="text-lg mb-8 animate-fade-in delay-150">Comece agora sua busca no Aju Carros e fique por dentro do que está em alta.</p>
+      <a href="{% url 'cars_list' %}"
+         class="inline-block bg-white text-blue-600 font-semibold px-8 py-3 rounded-full hover:bg-gray-100 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md animate-fade-in delay-300">
+        Acessar o Catálogo
+      </a>
+    </div>
+  </section>
+
+</div>
+{% endblock %}

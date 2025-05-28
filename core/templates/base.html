@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Aju Carros{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/animations.css' %}">
+    <style>
+      .nav-link {
+        transition: all 0.2s ease-in-out;
+      }
+      .nav-link:hover {
+        transform: translateY(-2px);
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+  <body class="flex flex-col min-h-screen bg-gray-50 text-gray-800">
+    
+    <!-- Navbar -->
+    <header class="bg-blue-600 text-white shadow">
+      <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+        <div class="flex items-center space-x-8">
+          <a href="{% url 'home' %}" class="text-2xl font-bold">Aju Carros</a>
+
+          {% if user.is_authenticated %}
+            {% if user.is_superuser %}
+              <p class="text-base font-sans">Olá, {{ user.username }}</p>
+            {% else %}
+              <p class="text-base font-sans">Olá, {{ user.first_name }}</p>
+            {% endif %}
+          {% endif %}
+        </div>
+
+        <div class="hidden md:flex space-x-8">
+          {% if user.is_authenticated %}
+
+            {% if user.is_superuser %}
+              <a href="{% url 'admin:index' %}" class="nav-link flex items-center gap-x-2 hover:text-gray-100">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" />
+                </svg>
+                Painel Administrativo
+              </a>
+            {% endif %}
+
+            <a href="{% url 'new_car' %}" class="nav-link flex items-center gap-x-2 hover:text-gray-100">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+              </svg>
+              Cadastrar carro
+            </a>
+
+            <a href="{% url 'logout' %}" class="nav-link flex items-center gap-x-2 hover:text-gray-100">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+              </svg>              
+              Sair
+            </a>
+          {% else %}
+            <a href="{% url 'login' %}" class="nav-link flex items-center gap-x-2 hover:text-gray-100">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+              </svg>              
+              Faça seu login
+            </a>
+          {% endif %}
+        </div>
+
+        <button id="mobile-menu-button" class="md:hidden">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </nav>
+
+      <div id="navbar-menu" class="md:hidden hidden px-6 pb-4 flex flex-col space-y-4">
+        {% if user.is_authenticated %}
+          <a href="{% url 'new_car' %}" class="nav-link flex items-center gap-x-2 hover:text-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+            Cadastrar carro
+          </a>
+      
+          <a href="{% url 'logout' %}" class="nav-link flex items-center gap-x-2 hover:text-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+            </svg>              
+            Sair
+          </a>
+        {% else %}
+          <a href="{% url 'login' %}" class="nav-link flex items-center gap-x-2 hover:text-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+            </svg>              
+            Faça seu login
+          </a>
+        {% endif %}
+      </div>
+      
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-10">
+      <div class="flex items-center justify-center min-h-screen rounded-3xl bg-gray-100 px-4">
+        {% block content %}{% endblock %}
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-600 text-white py-6">
+      <div class="text-center text-sm">
+        &copy; {% now "Y" %} Aju Carros. Todos os direitos reservados.
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("mobile-menu-button").addEventListener("click", function () {
+        const menu = document.getElementById("navbar-menu");
+        menu.classList.toggle("hidden");
+      });
+    </script>
+  </body>
+</html>

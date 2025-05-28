@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load currency_filters %}
+
+{% block content %}
+<div class="bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
+
+    <div class="md:flex md:space-x-6">
+      
+      <div class="md:w-1/2 h-80 sm:h-auto">
+        {% if object.photo %}
+          <img class="w-full h-full object-cover" src="{{ object.photo.url }}" alt="{{ object.model }}">
+        {% else %}
+          <div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500 text-sm">
+            Sem foto
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="md:w-1/2 p-8 flex flex-col justify-between">
+
+        <div>
+          <p class="text-sm uppercase tracking-wide text-blue-600 font-semibold">{{ object.brand.name }}</p>
+          <h1 class="text-3xl font-bold text-gray-900 mt-2">{{ object.model }}</h1>
+
+          <div class="mt-4 space-y-3 text-gray-700">
+            {% if object.plate %}
+              <p><span class="font-medium text-gray-800">Placa:</span> {{ object.plate }}</p>
+            {% endif %}
+            <p><span class="font-medium text-gray-800">Ano de Fabricação:</span> {{ object.factory_year }}</p>
+            <p><span class="font-medium text-gray-800">Ano do Modelo:</span> {{ object.model_year }}</p>
+            {% if object.description %}
+              <p><span class="font-medium text-gray-800">Descrição:</span> {{ object.description }}</p>
+            {% endif %}
+          </div>
+
+          <div class="mt-6">
+            <span class="text-4xl font-extrabold text-blue-600">R$ {{ object.value|currency_br }}</span>
+          </div>
+        </div>
+
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+
+          <a href="{% url 'cars_list' %}"
+             class="inline-flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium text-base px-6 py-3 rounded-xl shadow transition duration-200">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Voltar
+          </a>
+
+          {% if user.is_authenticated %}
+          
+          <a href="{% url 'car_update' pk=object.pk %}"
+             class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium text-base px-6 py-3 rounded-xl shadow transition duration-200">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M5.433 13.917l1.262-3.155A4 4 0 017.58 9.42l6.92-6.918a2.121 2.121 0 013 3l-6.92 6.918a4 4 0 01-1.343.886l-3.154 1.262a.5.5 0 01-.65-.65Z" />
+              <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0010 3H4.75A2.75 2.75 0 002 5.75v9.5A2.75 2.75 0 004.75 18h9.5A2.75 2.75 0 0017 15.25V10a.75.75 0 00-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z"/>
+            </svg>
+            Editar
+          </a>
+
+          <a href="{% url 'car_delete' pk=object.pk %}"
+             class="inline-flex items-center justify-center bg-red-600 hover:bg-red-700 text-white font-medium text-base px-6 py-3 rounded-xl shadow transition duration-200">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 00.23 1.482l.149-.022.841 10.518A2.75 2.75 0 007.596 19h4.807a2.75 2.75 0 002.742-2.53l.841-10.52.149.023a.75.75 0 00.23-1.482A41.03 41.03 0 0014 4.193V3.75A2.75 2.75 0 0011.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 00-1.5.06l.3 7.5a.75.75 0 001.5-.06l-.3-7.5Zm4.34.06a.75.75 0 10-1.5-.06l-.3 7.5a.75.75 0 101.5.06l.3-7.5Z" clip-rule="evenodd" />
+            </svg>
+            Deletar
+          </a>
+
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
