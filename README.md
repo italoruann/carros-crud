@@ -95,11 +95,11 @@ Abaixo estão as principais rotas da aplicação e suas funcionalidades:
 * **`/` (raiz)**:
     * **View:** `cars.views.CarsHomeView`
     * **Nome:** `home`
-    * **Descrição:** Página inicial da aplicação, geralmente exibindo alguns carros.
+    * **Descrição:** Página inicial da aplicação.
 * **`cars/`**:
     * **View:** `cars.views.CarsListView`
     * **Nome:** `cars_list`
-    * **Descrição:** Lista todos os carros cadastrados. Requer login.
+    * **Descrição:** Lista todos os carros cadastrados.
 * **`new_car/`**:
     * **View:** `cars.views.NewCarCreateView`
     * **Nome:** `new_car`
@@ -107,7 +107,7 @@ Abaixo estão as principais rotas da aplicação e suas funcionalidades:
 * **`car/<int:pk>/`**:
     * **View:** `cars.views.CarDetailView`
     * **Nome:** `car_detail`
-    * **Descrição:** Exibe os detalhes de um carro específico, identificado pelo seu `pk` (Primary Key). Requer login.
+    * **Descrição:** Exibe os detalhes de um carro específico, identificado pelo seu `pk` (Primary Key).
 * **`car/<int:pk>/update/`**:
     * **View:** `cars.views.CarUpdateView`
     * **Nome:** `car_update`
