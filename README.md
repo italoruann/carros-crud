@@ -21,7 +21,7 @@ Este é um projeto Django Full Stack (Server Side) para gerenciamento de carros,
 * **Gerenciamento de Carros (CRUD completo para usuários logados):**
     * Visualização da página inicial com carros.
     * Listagem de todos os carros cadastrados.
-    * Criação de novos registros de carros.
+    * Criação de novos registros de carros. Caso o campo de descrição esteja vazio, a descrição será gerada automaticamente usando IA.
     * Visualização dos detalhes de um carro específico.
     * Atualização das informações de um carro existente.
     * Exclusão de um carro.
@@ -33,6 +33,7 @@ Este é um projeto Django Full Stack (Server Side) para gerenciamento de carros,
 
 * **Frontend** HTML, Tailwind CSS
 * **Backend:** Django (Server Side)
+* **Inteligência Artificial:** Google Gemini API
 * **Containerização:** Docker
 
 ---
